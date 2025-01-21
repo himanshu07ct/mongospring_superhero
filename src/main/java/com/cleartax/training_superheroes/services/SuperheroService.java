@@ -49,3 +49,25 @@ public class SuperheroService {
         return superheroRepository.save(superhero);
     }
 }
+public SuperHero UpdateSuperhero(String name ,SuperheroRequestbody requestBody){
+    var result=superheroRepository.findAllByName(name);
+    if(result.size()==0){
+        throw new RuntimeException("no such superhero");
+    }
+    else{
+        result.get(0).setName(requestBody.getName());
+        result.get(0).setUniverse(requestBody.getUniverse());
+        result.get(0).setPower(requestBody.getPower());
+        superheroRepository.save(result.get(0));
+        return result.get(0);
+    }
+}
+public Object removeSuperhero(String name) {
+    var ans = superheroRepository.removeByName(name);
+    if (ans.size() == 0) {
+        throw new RuntimeException("No superheroes with the name: " + name);
+    }
+    else {
+        return "Superhero with name: " + name + " removed";
+    }
+}

@@ -35,3 +35,13 @@ public class SuperheroController {
         return superheroService.persistSuperhero(superhero);
     }
 }
+@PutMapping("/superhero/{name}")
+public SuperHero updateSuperHero(@PathVariable (value="name") String name,
+                                 @RequestBody SuperheroRequestbody superherorequestbody
+){
+    return superheroservice.UpdateSuperhero(name,superherorequestbody);
+}
+@DeleteMapping("/superhero/{name}")
+public Object deleteSuperhero(@PathVariable String name) {
+    return superheroService.removeSuperhero(name);
+}
